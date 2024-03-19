@@ -67,7 +67,7 @@ public class RabbitMQConsumer : RabbitMQBroker, IMessageConsumer
             case "AddEmployee":
                 {
                     UsersDbContext context = new UsersDbContext(this.config);
-                    EmployeeRepository repository = new EmployeeRepository(context);
+                    IRepository repository = new EmployeeRepository(context);
                     await repository.AddAsync(JsonConvert.DeserializeObject<Employee>(msg.Body));
                 }
                 break;
