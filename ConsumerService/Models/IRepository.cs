@@ -7,4 +7,5 @@ public interface IRepository
     Task AddAsync(Employee obj); 
     Task UpdateAsync(Employee obj);
     Task RemoveAsync(int id);
+    Task<List<Employee>> FilterEmployeesAsync(string searchKeyword, int pageNumber, int pageSize);
 }
