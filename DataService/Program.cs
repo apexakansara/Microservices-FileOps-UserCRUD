@@ -2,11 +2,16 @@ using DataService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.AddConsole();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => {
+    options.OutputFormatters.Add(new CsvOutputFormatter());
+})
+    .AddXmlSerializerFormatters();
+
 builder.Services.AddApiVersioning(options => {
     options.DefaultApiVersion = new ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
